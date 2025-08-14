@@ -1,6 +1,5 @@
 package com.financeapp.common.exception;
 
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -19,9 +18,10 @@ public class GlobalExceptionHandler extends RuntimeException {
          */
         ErrorResponse errorDetails = new ErrorResponse(
                 Instant.now(),
-                "There is no expense with that ID",
-                exc.getMessage()
+                "There is no expense with that ID"
         );
+
+        // TODO: log si es necesario con exc.getMessage()
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDetails);
     }
 }

@@ -8,19 +8,8 @@ import java.time.Instant;
 
 @Setter
 @Getter
+@AllArgsConstructor
 public class ErrorResponse {
     private Instant timeStamp;
     private String message;
-    private String details;
-
-    public ErrorResponse(Instant timeStamp, String details) {
-        this.timeStamp = timeStamp;
-        this.details = details;
-    }
-
-    public ErrorResponse(Instant timeStamp, String message, String details) {
-        this.timeStamp = timeStamp;
-        this.message = message;
-        this.details = details;
-    }
 }
