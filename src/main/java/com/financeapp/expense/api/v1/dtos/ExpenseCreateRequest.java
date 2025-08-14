@@ -1,4 +1,4 @@
-package com.financeapp.expense.api.dto;
+package com.financeapp.expense.api.v1.dtos;
 
 import com.financeapp.expense.domain.ExpenseCategory;
 import jakarta.validation.constraints.*;

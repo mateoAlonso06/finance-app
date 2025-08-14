@@ -1,9 +1,9 @@
 package com.financeapp.expense.service;
 
-import com.financeapp.expense.api.dto.ExpenseCreateRequest;
-import com.financeapp.expense.api.dto.ExpenseFilter;
-import com.financeapp.expense.api.dto.ExpenseResponse;
-import com.financeapp.expense.api.dto.ExpenseUpdateRequest;
+import com.financeapp.expense.api.v1.dtos.ExpenseCreateRequest;
+import com.financeapp.expense.api.v1.dtos.ExpenseFilter;
+import com.financeapp.expense.api.v1.dtos.ExpenseResponse;
+import com.financeapp.expense.api.v1.dtos.ExpenseUpdateRequest;
 import com.financeapp.expense.domain.Expense;
 import com.financeapp.expense.domain.ExpenseCategory;
 import com.financeapp.expense.mapper.ExpenseMapper;
@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Service
-public class ExpenseService<ExpenseResonse> implements iExpenseService {
+public class ExpenseService implements iExpenseService {
     private final ExpenseMapper expenseMapper;
     private final ExpenseRepository expenseRepository;
 
@@ -47,7 +47,13 @@ public class ExpenseService<ExpenseResonse> implements iExpenseService {
 
     @Override
     public ExpenseResponse updateExpense(UUID id, ExpenseUpdateRequest request) {
-        return null;
+        Expense expenseStoraged = expenseRepository.findById(id).orElse(null);
+        if (expenseStoraged == null) {
+            return null;
+        }
+        expenseMapper.updateEntityFromDto(request, expenseStoraged);
+        Expense saved = expenseRepository.save(expenseStoraged);
+        return expenseMapper.toResponse(saved);
     }
 
     @Override
