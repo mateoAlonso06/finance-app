@@ -1,20 +1,20 @@
 package com.financeapp.expense.api.v1.dtos;
 
 import com.financeapp.expense.domain.ExpenseCategory;
-import org.springframework.format.annotation.DateTimeFormat;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
-public record ExpenseFilter(
-        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-        LocalDate from,
-        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-        LocalDate to,
-        List<ExpenseCategory> categories,
-        BigDecimal minAmount,
-        BigDecimal maxAmount,
-        String q
-) {
+@Getter
+@Setter
+public class ExpenseFilter {
+    private LocalDate from;
+    private LocalDate to;
+    private List<ExpenseCategory> categories;
+    private BigDecimal minAmount;
+    private BigDecimal maxAmount;
+    private String q;
 }

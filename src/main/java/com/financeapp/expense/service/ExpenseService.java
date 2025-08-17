@@ -7,7 +7,7 @@ import com.financeapp.expense.api.v1.dtos.ExpenseResponse;
 import com.financeapp.expense.api.v1.dtos.ExpenseUpdateRequest;
 import com.financeapp.expense.domain.Expense;
 import com.financeapp.expense.domain.ExpenseCategory;
-import com.financeapp.expense.domain.ExpenseSpecs;
+import com.financeapp.expense.api.v1.ExpenseSpecs;
 import com.financeapp.expense.mapper.ExpenseMapper;
 import com.financeapp.expense.repository.ExpenseRepository;
 
@@ -41,21 +41,13 @@ public class ExpenseService implements iExpenseService {
 
     @Override
     public ExpenseResponse getExpenseById(UUID id) {
-        Expense expense = expenseRepository.findById(id)
-                .orElseThrow(() -> new ExpenseNotFoundException(id));
+        Expense expense = expenseRepository.findById(id).orElseThrow(() -> new ExpenseNotFoundException(id));
         return expenseMapper.toResponse(expense);
     }
 
     @Override
-    public Page<ExpenseResponse> getAllExpenses(Pageable pageable) {
-        Page<Expense> expenses = expenseRepository.findAll(pageable);
-        return expenses.map(expenseMapper::toResponse);
-    }
-
-    @Override
     public ExpenseResponse updateExpense(UUID id, ExpenseUpdateRequest request) {
-        Expense expense = expenseRepository.findById(id)
-                        .orElseThrow(() -> new ExpenseNotFoundException(id));
+        Expense expense = expenseRepository.findById(id).orElseThrow(() -> new ExpenseNotFoundException(id));
 
         expenseMapper.updateEntityFromDto(request, expense);
         Expense saved = expenseRepository.save(expense);
@@ -64,23 +56,22 @@ public class ExpenseService implements iExpenseService {
 
     @Override
     public void deleteExpense(UUID id) {
-        Expense expense = expenseRepository.findById(id)
-                .orElseThrow(() -> new ExpenseNotFoundException(id));
+        Expense expense = expenseRepository.findById(id).orElseThrow(() -> new ExpenseNotFoundException(id));
 
         expenseRepository.delete(expense);
     }
 
     @Override
-    public Page<ExpenseResponse> findExpensesByFilter(ExpenseFilter f, Pageable pageable) {
+    public Page<ExpenseResponse> getExpensesByFilter(ExpenseFilter f, Pageable pageable) {
         Specification<Expense> spec = Specification.allOf(
-                ExpenseSpecs.dateFrom(f.from()),
-                ExpenseSpecs.dateTo(f.to()),
-                ExpenseSpecs.categoryIn(f.categories()),
-                ExpenseSpecs.amountMin(f.minAmount()),
-                ExpenseSpecs.amountMax(f.maxAmount()),
-                ExpenseSpecs.qLike(f.q())
+                ExpenseSpecs.dateFrom(f.getFrom()),
+                ExpenseSpecs.dateTo(f.getTo()),
+                ExpenseSpecs.categoryIn(f.getCategories()),
+                ExpenseSpecs.amountMin(f.getMinAmount()),
+                ExpenseSpecs.amountMax(f.getMaxAmount()),
+                ExpenseSpecs.qLike(f.getQ())
         );
-        Page<Expense> expenses=  expenseRepository.findAll(spec, pageable);
+        Page<Expense> expenses = expenseRepository.findAll(spec, pageable);
         return expenses.map(expenseMapper::toResponse);
     }
 

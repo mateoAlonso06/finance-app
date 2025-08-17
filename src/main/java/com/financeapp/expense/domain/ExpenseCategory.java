@@ -4,7 +4,7 @@ public enum ExpenseCategory {
     FOOD,
     TRANSPORT,
     RENT,
-    UTILITES,
+    UTILITIES,
     ENTERTAINMENT,
     HEALTH,
     OTHER

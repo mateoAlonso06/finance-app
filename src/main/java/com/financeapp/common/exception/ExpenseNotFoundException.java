@@ -8,7 +8,7 @@ import java.util.UUID;
 @Getter
 @Setter
 public class ExpenseNotFoundException extends RuntimeException {
-        public ExpenseNotFoundException(UUID id) {
-            super("Expense with id " + id + " not found");
-        }
+    public ExpenseNotFoundException(UUID id) {
+        super("Expense with id " + id + " not found");
+    }
 }

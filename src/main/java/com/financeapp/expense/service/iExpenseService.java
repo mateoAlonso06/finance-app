@@ -19,13 +19,11 @@ public interface iExpenseService {
 
     ExpenseResponse getExpenseById(UUID id);
 
-    Page<ExpenseResponse> getAllExpenses(Pageable pageable);
-
     ExpenseResponse updateExpense(UUID id, ExpenseUpdateRequest request);
 
     void deleteExpense(UUID id);
 
-    Page<ExpenseResponse> findExpensesByFilter(ExpenseFilter f, Pageable pageable);
+    Page<ExpenseResponse> getExpensesByFilter(ExpenseFilter f, Pageable pageable);
 
     BigDecimal getTotalAmount(LocalDate from, LocalDate to);
 

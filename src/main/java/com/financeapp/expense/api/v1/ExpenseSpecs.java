@@ -1,5 +1,7 @@
-package com.financeapp.expense.domain;
+package com.financeapp.expense.api.v1;
 
+import com.financeapp.expense.domain.Expense;
+import com.financeapp.expense.domain.ExpenseCategory;
 import org.springframework.data.jpa.domain.Specification;
 
 import java.math.BigDecimal;

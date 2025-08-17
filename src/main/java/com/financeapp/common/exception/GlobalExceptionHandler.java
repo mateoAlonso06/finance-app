@@ -12,16 +12,11 @@ public class GlobalExceptionHandler extends RuntimeException {
 
     @ExceptionHandler(ExpenseNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleException(ExpenseNotFoundException exc) {
-        /*
-         SI NECESITO LOGS:
-         incluir la siguiente funcion dentro del metodo -> exc.getMessage()
-         */
         ErrorResponse errorDetails = new ErrorResponse(
                 Instant.now(),
                 "There is no expense with that ID"
         );
-
-        // TODO: log si es necesario con exc.getMessage()
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDetails);
+        //log si es necesario con exc.getMessage()
     }
 }
