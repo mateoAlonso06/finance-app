@@ -64,8 +64,6 @@ public class ExpenseService implements iExpenseService {
     public void deleteExpense(UUID id) {
         Expense expense = expenseRepository.findById(id).orElseThrow(() -> new ExpenseNotFoundException(id));
         expenseRepository.delete(expense);
-
-        User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
     }
 
     @Override

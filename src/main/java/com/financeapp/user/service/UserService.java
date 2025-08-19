@@ -1,7 +1,6 @@
 package com.financeapp.user.service;
 
 import com.financeapp.common.exception.users.UserNotFoundException;
-import com.financeapp.expense.mapper.ExpenseMapper;
 import com.financeapp.user.dtos.UserCreateRequest;
 import com.financeapp.user.dtos.UserResponse;
 import com.financeapp.user.dtos.UserUpdateRequest;
@@ -19,12 +18,10 @@ import java.util.UUID;
 public class UserService implements iUserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
-    private final ExpenseMapper expenseMapper;
 
-    public UserService(UserRepository userRepository, UserMapper mapper, ExpenseMapper expenseMapper) {
+    public UserService(UserRepository userRepository, UserMapper mapper) {
         this.userRepository = userRepository;
         this.userMapper = mapper;
-        this.expenseMapper = expenseMapper;
     }
 
     @Override

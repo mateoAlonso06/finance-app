@@ -5,13 +5,9 @@ import com.financeapp.expense.dtos.ExpenseFilter;
 import com.financeapp.expense.dtos.ExpenseResponse;
 import com.financeapp.expense.dtos.ExpenseUpdateRequest;
 
-import com.financeapp.expense.domain.ExpenseCategory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.Map;
 import java.util.UUID;
 
 public interface iExpenseService {
