@@ -1,4 +1,4 @@
-package com.financeapp.common.exception;
+package com.financeapp.common.exception.users;
 
 import java.util.UUID;
 

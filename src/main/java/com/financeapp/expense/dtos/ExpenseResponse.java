@@ -8,12 +8,13 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 public record ExpenseResponse(
-        UUID id,
+        UUID idExpense,
         LocalDate date,
         BigDecimal amount,
         ExpenseCategory category,
         String description,
         Instant createdAt,
-        Instant updatedAt
+        Instant updatedAt,
+        UUID idUser
 ) {
 }

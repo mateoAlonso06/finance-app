@@ -4,6 +4,7 @@ import com.financeapp.user.dtos.UserCreateRequest;
 import com.financeapp.user.dtos.UserResponse;
 import com.financeapp.user.dtos.UserUpdateRequest;
 import com.financeapp.user.service.iUserService;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -36,7 +37,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserResponse> createUser(@RequestBody UserCreateRequest user) {
+    public ResponseEntity<UserResponse> createUser(@Valid @RequestBody UserCreateRequest user) {
         UserResponse userResponse = uService.createUser(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(userResponse);
     }

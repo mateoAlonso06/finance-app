@@ -1,6 +1,7 @@
 package com.financeapp.user.service;
 
-import com.financeapp.common.exception.UserNotFoundException;
+import com.financeapp.common.exception.users.UserNotFoundException;
+import com.financeapp.expense.mapper.ExpenseMapper;
 import com.financeapp.user.dtos.UserCreateRequest;
 import com.financeapp.user.dtos.UserResponse;
 import com.financeapp.user.dtos.UserUpdateRequest;
@@ -17,23 +18,25 @@ import java.util.UUID;
 @Service
 public class UserService implements iUserService {
     private final UserRepository userRepository;
-    private final UserMapper mapper;
+    private final UserMapper userMapper;
+    private final ExpenseMapper expenseMapper;
 
-    public UserService(UserRepository userRepository, UserMapper mapper) {
+    public UserService(UserRepository userRepository, UserMapper mapper, ExpenseMapper expenseMapper) {
         this.userRepository = userRepository;
-        this.mapper = mapper;
+        this.userMapper = mapper;
+        this.expenseMapper = expenseMapper;
     }
 
     @Override
     public UserResponse getUser(UUID id) {
         User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
-        return mapper.toResponse(user);
+        return userMapper.toResponse(user);
     }
 
     @Override
     public Page<UserResponse> getUsers(Pageable pageable) {
         Page<User> page = userRepository.findAll(pageable);
-        return page.map(mapper::toResponse);
+        return page.map(userMapper::toResponse);
     }
 
     @Override
@@ -44,10 +47,10 @@ public class UserService implements iUserService {
 
     @Override
     public UserResponse createUser(UserCreateRequest userCreateRequest) {
-        User toSave = mapper.toEntity(userCreateRequest);
+        User toSave = userMapper.toEntity(userCreateRequest);
         toSave.setRole(Role.USER);
         User saved = userRepository.save(toSave);
-        return mapper.toResponse(saved);
+        return userMapper.toResponse(saved);
     }
 
     @Override
@@ -62,6 +65,6 @@ public class UserService implements iUserService {
 
         if (req.lastname() != null && !req.lastname().isBlank()) user.setLastName(req.lastname());
 
-        return mapper.toResponse(userRepository.save(user));
+        return userMapper.toResponse(userRepository.save(user));
     }
 }

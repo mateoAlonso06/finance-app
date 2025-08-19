@@ -5,6 +5,7 @@ import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.UUID;
 
 public record ExpenseCreateRequest(
         @NotNull
@@ -14,6 +15,8 @@ public record ExpenseCreateRequest(
         @NotNull
         ExpenseCategory category,
         @Size(max = 300) @NotEmpty
-        String description
+        String description,
+        @NotNull
+        UUID idUser
 ) {
 }

@@ -37,7 +37,7 @@ public class Expense {
     @LastModifiedDate
     @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
-    @JoinColumn(name = "id_user")
-    @ManyToOne(targetEntity = User.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_user", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 }

@@ -51,9 +51,15 @@ public class ExpenseController {
         return ResponseEntity.ok("Se elimino correctamente");
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<ExpenseResponse> updateExpenseData(@PathVariable UUID id, @RequestBody ExpenseUpdateRequest exp) {
-        ExpenseResponse body = service.updateExpense(id, exp);
-        return ResponseEntity.ok(body);
+        ExpenseResponse response = service.updateExpense(id, exp);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<Page<ExpenseResponse>> getExpensesByUser(@PathVariable UUID id, Pageable pageable) {
+        Page<ExpenseResponse> expenses = service.getExpensesByUser(id, pageable);
+        return ResponseEntity.status(HttpStatus.OK).body(expenses);
     }
 }

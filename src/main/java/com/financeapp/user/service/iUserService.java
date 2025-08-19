@@ -1,5 +1,6 @@
 package com.financeapp.user.service;
 
+import com.financeapp.expense.dtos.ExpenseResponse;
 import com.financeapp.user.dtos.UserCreateRequest;
 import com.financeapp.user.dtos.UserResponse;
 import com.financeapp.user.dtos.UserUpdateRequest;

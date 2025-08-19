@@ -17,13 +17,8 @@ public interface ExpenseMapper {
     @Mapping(target = "category", source = "category")
     Expense toEntity(ExpenseCreateRequest dto);
 
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    @Mapping(target = "idExpense", ignore = true)
-    @Mapping(target = "createdAt", ignore = true)
-    @Mapping(target = "updatedAt", ignore = true)
-    @Mapping(target = "category", source = "category")
-    void updateEntityFromDto(ExpenseUpdateRequest dto, @MappingTarget Expense entity);
-
+    @Mapping(source = "idExpense", target = "idExpense")
+    @Mapping(source = "user.idUser", target = "idUser")
     ExpenseResponse toResponse(Expense entity);
 
     List<ExpenseResponse> toResponseList(List<Expense> entities);

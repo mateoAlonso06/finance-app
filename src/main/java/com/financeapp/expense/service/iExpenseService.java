@@ -25,7 +25,5 @@ public interface iExpenseService {
 
     Page<ExpenseResponse> getExpensesByFilter(ExpenseFilter f, Pageable pageable);
 
-    BigDecimal getTotalAmount(LocalDate from, LocalDate to);
-
-    Map<ExpenseCategory, BigDecimal> getTotalAmountByCategory(LocalDate from, LocalDate to);
+    Page<ExpenseResponse> getExpensesByUser(UUID id, Pageable pageable);
 }
