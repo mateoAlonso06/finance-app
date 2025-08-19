@@ -2,9 +2,7 @@ package com.financeapp.expense.domain;
 
 import com.financeapp.user.domain.User;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -23,7 +21,7 @@ public class Expense {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id_expense")
-    private UUID id;
+    private UUID idExpense;
     @Column(name = "date", nullable = false)
     private LocalDate date;
     @Column(name = "amount", nullable = false, precision = 14, scale = 2)

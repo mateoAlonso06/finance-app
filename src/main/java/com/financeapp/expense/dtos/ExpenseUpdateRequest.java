@@ -1,4 +1,4 @@
-package com.financeapp.expense.api.v1.dtos;
+package com.financeapp.expense.dtos;
 
 import com.financeapp.expense.domain.ExpenseCategory;
 import jakarta.validation.constraints.DecimalMin;
@@ -9,11 +9,13 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public record ExpenseUpdateRequest(
-        @NotNull LocalDate date,
+        @NotNull
+        LocalDate date,
         @NotNull @DecimalMin("0.01")
         BigDecimal amount,
         @NotNull
         ExpenseCategory category,
-        @Size(max = 300) String description
+        @Size(max = 300)
+        String description
 ) {
 }

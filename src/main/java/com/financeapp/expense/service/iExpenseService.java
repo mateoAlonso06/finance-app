@@ -1,9 +1,9 @@
 package com.financeapp.expense.service;
 
-import com.financeapp.expense.api.v1.dtos.ExpenseCreateRequest;
-import com.financeapp.expense.api.v1.dtos.ExpenseFilter;
-import com.financeapp.expense.api.v1.dtos.ExpenseResponse;
-import com.financeapp.expense.api.v1.dtos.ExpenseUpdateRequest;
+import com.financeapp.expense.dtos.ExpenseCreateRequest;
+import com.financeapp.expense.dtos.ExpenseFilter;
+import com.financeapp.expense.dtos.ExpenseResponse;
+import com.financeapp.expense.dtos.ExpenseUpdateRequest;
 
 import com.financeapp.expense.domain.ExpenseCategory;
 import org.springframework.data.domain.Page;

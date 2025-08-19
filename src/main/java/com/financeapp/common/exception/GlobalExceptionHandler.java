@@ -11,12 +11,21 @@ import java.time.Instant;
 public class GlobalExceptionHandler extends RuntimeException {
 
     @ExceptionHandler(ExpenseNotFoundException.class)
-    public ResponseEntity<ErrorResponse> handleException(ExpenseNotFoundException exc) {
+    public ResponseEntity<ErrorResponse> handleExpenseNotFound(ExpenseNotFoundException exc) {
         ErrorResponse errorDetails = new ErrorResponse(
                 Instant.now(),
                 "There is no expense with that ID"
         );
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDetails);
         //log si es necesario con exc.getMessage()
+    }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleUserNotFound(UserNotFoundException exc) {
+        ErrorResponse errorDetails = new ErrorResponse(
+                Instant.now(),
+                "There is no user with that ID"
+        );
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDetails);
     }
 }

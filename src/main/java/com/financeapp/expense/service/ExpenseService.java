@@ -1,13 +1,13 @@
 package com.financeapp.expense.service;
 
 import com.financeapp.common.exception.ExpenseNotFoundException;
-import com.financeapp.expense.api.v1.dtos.ExpenseCreateRequest;
-import com.financeapp.expense.api.v1.dtos.ExpenseFilter;
-import com.financeapp.expense.api.v1.dtos.ExpenseResponse;
-import com.financeapp.expense.api.v1.dtos.ExpenseUpdateRequest;
+import com.financeapp.expense.dtos.ExpenseCreateRequest;
+import com.financeapp.expense.dtos.ExpenseFilter;
+import com.financeapp.expense.dtos.ExpenseResponse;
+import com.financeapp.expense.dtos.ExpenseUpdateRequest;
 import com.financeapp.expense.domain.Expense;
 import com.financeapp.expense.domain.ExpenseCategory;
-import com.financeapp.expense.api.v1.ExpenseSpecs;
+import com.financeapp.expense.helpers.ExpenseSpecs;
 import com.financeapp.expense.mapper.ExpenseMapper;
 import com.financeapp.expense.repository.ExpenseRepository;
 
@@ -57,7 +57,6 @@ public class ExpenseService implements iExpenseService {
     @Override
     public void deleteExpense(UUID id) {
         Expense expense = expenseRepository.findById(id).orElseThrow(() -> new ExpenseNotFoundException(id));
-
         expenseRepository.delete(expense);
     }
 

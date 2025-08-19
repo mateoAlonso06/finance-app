@@ -1,4 +1,4 @@
-package com.financeapp.expense.api.v1;
+package com.financeapp.expense.helpers;
 
 import com.financeapp.expense.domain.Expense;
 import com.financeapp.expense.domain.ExpenseCategory;

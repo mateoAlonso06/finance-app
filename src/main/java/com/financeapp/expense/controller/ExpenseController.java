@@ -1,9 +1,9 @@
-package com.financeapp.expense.api.v1;
+package com.financeapp.expense.controller;
 
-import com.financeapp.expense.api.v1.dtos.ExpenseCreateRequest;
-import com.financeapp.expense.api.v1.dtos.ExpenseFilter;
-import com.financeapp.expense.api.v1.dtos.ExpenseResponse;
-import com.financeapp.expense.api.v1.dtos.ExpenseUpdateRequest;
+import com.financeapp.expense.dtos.ExpenseCreateRequest;
+import com.financeapp.expense.dtos.ExpenseFilter;
+import com.financeapp.expense.dtos.ExpenseResponse;
+import com.financeapp.expense.dtos.ExpenseUpdateRequest;
 import com.financeapp.expense.service.iExpenseService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
